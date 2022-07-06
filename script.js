@@ -95,10 +95,14 @@ nextBtn.addEventListener("click", function() {
 
 
 let extractData = async function() {
-    const request = await fetch(`https://www.omdbapi.com/?=&apikey=81afce36&s=${search}&page=${page}`);
+    try{
+        const request = await fetch(`https://www.omdbapi.com/?=&apikey=81afce36&s=${search}&page=${page}`);
     const response = await request.json();
     console.log(response);
     renderMovies(response.Search, elMovies);
     renderButtons(response.totalResults,elPags);
+    } catch(err){
+        alert(err)
+    }
 }
 extractData();
